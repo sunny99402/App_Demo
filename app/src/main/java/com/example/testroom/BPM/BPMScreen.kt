@@ -39,86 +39,16 @@ fun BPMScreen(model: BPMViewModel) {
     if(connectState) {
         Global.bpmProtocol!!.readHistorysOrCurrDataAndSyncTiming()
     }
+    
+    val dRecord by mutableStateOf(model.dRecord)
 
     Scaffold(
         topBar = { TopBar() }
     ) {
-
+        Text(text = dRecord.MData.toString())
     }
 }
 
-@Composable
-fun CardView(
-    title: String,
-    bpm: RoomEntity,
-    image: Painter,
-    viewModel: BPMViewModel
-) {
-    var openDetailDialog = remember { mutableStateOf(false) }
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable {
-                openDetailDialog.value = true
-            }
-            .padding(5.dp),
-        backgroundColor = Color(240, 240, 240)
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(10.dp)
-                .background(Color(173, 208, 233))
-        ) {
-            Column(modifier = Modifier.padding(8.dp, 8.dp, 0.dp, 10.dp)) {
-                Text(
-                    text = title, fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Text(
-                    text = "${bpm.userNumber}:    ${bpm.sys}/${bpm.dia}    ${bpm.pul}",
-                    fontSize = 20.sp,
-                    modifier = Modifier.padding(start = 5.dp, top = 10.dp)
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Text(
-                    text = "Normal", fontSize = 20.sp,
-                    modifier = Modifier.padding(20.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.weight(2f))
-
-            Column(modifier = Modifier.padding(8.dp)) {
-                Text(
-                    text = bpm.date,
-                    fontSize = 15.sp
-                )
-
-                Text(
-                    text = bpm.timePeriod.toString(),
-                    fontSize = 15.sp
-                )
-
-                Spacer(modifier = Modifier.height(10.dp))
-
-                Box(modifier = Modifier.padding(top = 5.dp, end = 20.dp)) {
-                    Image(
-                        painter = image,
-                        contentDescription = "",
-                        modifier = Modifier
-                            .clip(CircleShape)
-                            .size(85.dp)
-                    )
-                }
-            }
-        }
-    }
-}
 
 @Composable
 fun TopBar() {

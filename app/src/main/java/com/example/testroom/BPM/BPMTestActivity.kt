@@ -186,29 +186,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
 
     override fun onResponseReadHistory(dRecord: DRecord) {
         logListAdapter?.addLog("BPM : ReadHistory -> DRecord = $dRecord", model = vm)
-        //room database
-        val db = RoomDbHelper(this)
-        for(i in dRecord.MData) {
-            GlobalScope.launch {
-                db.getRoomDao().insert(RoomEntity().apply {
-                    userNumber = dRecord.userNumber.toString()
-                    accountId = ""
-                    sys = i.systole
-                    dia = i.dia
-                    pul = 0
-                    date = "${i.year}/${i.month}/${i.day}"
-                    timePeriod = "${i.hour}:${i.minute}"
-                    afib = i.AFIb
-                    pad = 0
-                    mam = i.MAM
-                    cuffokr = i.cuffokr
-                    photoPath = ""
-                    note = ""
-                    recordingPath = ""
-                    recordTime = ""
-                })
-            }
-        }
+        vm.setDRecord(dRecord)
     }
 
     override fun onResponseClearHistory(isSuccess: Boolean) {

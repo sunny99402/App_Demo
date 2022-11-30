@@ -23,6 +23,7 @@ class BPMViewModel: ViewModel() {
 
     var name by mutableStateOf("")
     var isConnect by mutableStateOf(false)
+    var dRecord by mutableStateOf(DRecord())
 
     fun addData(param: String) {
         _logListData.value = _logListData.value?.let { it + listOf(param) }
@@ -34,5 +35,10 @@ class BPMViewModel: ViewModel() {
 
     fun setConnectState(b: Boolean) {
         this.isConnect = b
+    }
+
+    @JvmName("setDRecord1")
+    fun setDRecord(dRecord: DRecord) {
+        this.dRecord = dRecord
     }
 }
