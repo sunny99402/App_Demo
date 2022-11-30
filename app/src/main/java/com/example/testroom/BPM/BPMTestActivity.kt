@@ -1,38 +1,27 @@
 package com.example.testroom.BPM
 
 import android.Manifest
-import android.Manifest.permission.BLUETOOTH_CONNECT
 import android.app.AlertDialog
-import android.bluetooth.BluetoothAdapter
-import android.content.Intent
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
-import androidx.room.RoomDatabase
 import com.example.testroom.BPMViewModel
 import com.example.testroom.Global
 import com.example.testroom.LogListAdapter
-import com.example.testroom.Room.RoomDao
-import com.example.testroom.Room.RoomDbHelper
-import com.example.testroom.Room.RoomEntity
+import com.example.testroom.Room.MyDatabase
 import com.ideabus.ideabuslibrary.util.BaseUtils
 import com.ideabus.model.bluetooth.MyBluetoothLE
 import com.ideabus.model.data.*
 import com.ideabus.model.protocol.BPMProtocol
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.security.cert.CertPathBuilder.getInstance
 
 class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
     View.OnClickListener, BPMProtocol.OnDataResponseListener, BPMProtocol.OnNotifyStateListener,
@@ -52,7 +41,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
     var logListAdapter: LogListAdapter? = null
     var isConnecting = false
     //view model
-    private val vm: BPMViewModel by viewModels()
+    private val vm by viewModels<BPMViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +49,10 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
         checkPermission()
         //Initialize the body ester machine Bluetooth module
         initParam()
+        //build database
+        vm.liveData.observe(this) {}
         //if connected, read history
-        val connectState by mutableStateOf(vm.isConnect)
+        val connectState by mutableStateOf(vm.isConnected)
         if(connectState) {
             Global.bpmProtocol!!.readHistorysOrCurrDataAndSyncTiming()
         }
@@ -187,7 +178,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
     override fun onResponseReadHistory(dRecord: DRecord) {
         logListAdapter?.addLog("BPM : ReadHistory -> DRecord = $dRecord", model = vm)
         vm.setDRecord(dRecord)
-        vm.setDatabase(this)
+        vm.insertDatabase()
     }
 
     override fun onResponseClearHistory(isSuccess: Boolean) {
@@ -259,19 +250,13 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
         //Connection
         if (name.startsWith("A")) {
             logListAdapter?.addLog("3G Model！", model = vm)
-            //view model
-            vm.deviceName(name)
-
             Global.bpmProtocol!!.connect(mac)
 
         } else {
             logListAdapter?.addLog("4G Model！", model = vm)
-            //view model
-            vm.deviceName(name)
-
             Global.bpmProtocol!!.bond(mac)
-
         }
+
     }
 
     override fun onConnectionState(state: BPMProtocol.ConnectState) {

@@ -1,42 +1,43 @@
 package com.example.testroom
 
+import android.app.Application
 import androidx.compose.runtime.*
-import androidx.core.app.ComponentActivity
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.testroom.Room.RoomDao
-import com.example.testroom.Room.RoomDbHelper
-import com.example.testroom.Room.RoomEntity
-import com.ideabus.model.data.CurrentAndMData
+import androidx.lifecycle.*
+import com.example.testroom.Room.MyDatabase
+import com.example.testroom.Room.BPM
 import com.ideabus.model.data.DRecord
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class BPMViewModel: ViewModel() {
+class BPMViewModel(application: Application) : AndroidViewModel(application) {
     private val _logListData = MutableLiveData<List<String>>(emptyList())
     val logListData: LiveData<List<String>>
         get() = _logListData
 
-    private val _bpmListData = MutableLiveData<List<RoomEntity>>(emptyList())
-    val bpmListData: LiveData<List<RoomEntity>>
+    private val _bpmListData = MutableLiveData<List<BPM>>(emptyList())
+    val bpmListData: LiveData<List<BPM>>
         get() = _bpmListData
 
+    //database
+    private val database: MyDatabase = MyDatabase.getInstance(application)
+    private val bpmDao = database.getRoomDao()
+    val liveData = database.getRoomDao().getAllBPMs()
 
-    var name by mutableStateOf("")
-    var isConnect by mutableStateOf(false)
+    var isConnected by mutableStateOf(false)
+    var connectState by mutableStateOf("Scan")
     var dRecord by mutableStateOf(DRecord())
 
-    fun addData(param: String) {
+    fun addLogData(param: String) {
         _logListData.value = _logListData.value?.let { it + listOf(param) }
     }
 
-    fun deviceName(name: String) {
-        this.name = name
-    }
-
     fun setConnectState(b: Boolean) {
-        this.isConnect = b
+        this.isConnected = b
+        if(b) {
+            this.connectState = "Connected"
+        } else{
+            this.connectState = "Scan"
+        }
     }
 
     @JvmName("setDRecord1")
@@ -44,12 +45,10 @@ class BPMViewModel: ViewModel() {
         this.dRecord = dRecord
     }
 
-    fun setDatabase(activity: ComponentActivity) {
-        //room database
-        val db = RoomDbHelper(activity)
+    fun insertDatabase() {
         for(i in dRecord.MData) {
             GlobalScope.launch {
-                db.getRoomDao().insert(RoomEntity().apply {
+                bpmDao.insert(BPM().apply {
                     userNumber = dRecord.userNumber.toString()
                     accountId = ""
                     sys = i.systole

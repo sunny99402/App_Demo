@@ -20,7 +20,7 @@ class LogListAdapter() : BaseAdapter() {
         mLogData.add(message)
 
         //view model
-        model.addData(message)
+        model.addLogData(message)
 
         notifyDataSetChanged()
         return mLogData
