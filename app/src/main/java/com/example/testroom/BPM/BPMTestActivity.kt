@@ -187,6 +187,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
     override fun onResponseReadHistory(dRecord: DRecord) {
         logListAdapter?.addLog("BPM : ReadHistory -> DRecord = $dRecord", model = vm)
         vm.setDRecord(dRecord)
+        vm.setDatabase(this)
     }
 
     override fun onResponseClearHistory(isSuccess: Boolean) {
