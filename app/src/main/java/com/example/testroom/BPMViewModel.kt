@@ -2,10 +2,13 @@ package com.example.testroom
 
 import android.app.Application
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.*
 import com.example.testroom.Room.MyDatabase
 import com.example.testroom.Room.BPM
+import com.example.testroom.Room.BPMDao
 import com.ideabus.model.data.DRecord
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -24,20 +27,20 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
     val liveData = database.getRoomDao().getAllBPMs()
 
     var isConnected by mutableStateOf(false)
-    var connectState by mutableStateOf("Scan")
+    var connectState by mutableStateOf("")
     var dRecord by mutableStateOf(DRecord())
 
     fun addLogData(param: String) {
         _logListData.value = _logListData.value?.let { it + listOf(param) }
     }
 
-    fun setConnectState(b: Boolean) {
+    fun setIsConnect(b: Boolean) {
         this.isConnected = b
-        if(b) {
-            this.connectState = "Connected"
-        } else{
-            this.connectState = "Scan"
-        }
+    }
+
+    @JvmName("setConnectState1")
+    fun setConnectState(s: String) {
+        this.connectState = s
     }
 
     @JvmName("setDRecord1")
@@ -45,10 +48,11 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
         this.dRecord = dRecord
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     fun insertDatabase() {
         for(i in dRecord.MData) {
             GlobalScope.launch {
-                bpmDao.insert(BPM().apply {
+                var bpm = BPM().apply {
                     userNumber = dRecord.userNumber.toString()
                     accountId = ""
                     sys = i.systole
@@ -64,7 +68,10 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
                     note = ""
                     recordingPath = ""
                     recordTime = ""
-                })
+                }
+                if(liveData.value?.isEmpty() == true) {
+                    bpmDao.insert(bpm)
+                }
             }
         }
     }

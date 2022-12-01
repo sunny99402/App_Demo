@@ -95,6 +95,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
             Log.d(TAG, "1026 not support Bluetooth")
             return
         }
+        vm.setConnectState("start scan")
         logListAdapter?.addLog("start scan", model = vm)
         Global.bpmProtocol!!.startScan(10)
     }
@@ -177,6 +178,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
 
     override fun onResponseReadHistory(dRecord: DRecord) {
         logListAdapter?.addLog("BPM : ReadHistory -> DRecord = $dRecord", model = vm)
+        //build database
         vm.setDRecord(dRecord)
         vm.insertDatabase()
     }
@@ -265,24 +267,29 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
             BPMProtocol.ConnectState.Connected -> {
                 isConnecting = false
                 //view model
-                vm.setConnectState(true)
+                vm.setConnectState("Connected")
+                vm.setIsConnect(true)
                 logListAdapter?.addLog("Connected", model = vm)
             }
             BPMProtocol.ConnectState.ConnectTimeout -> {
                 isConnecting = false
                 //view model
-                vm.setConnectState(false)
+                vm.setConnectState("ConnectTimeOut")
+                vm.setIsConnect(false)
                 logListAdapter?.addLog("ConnectTimeout", model = vm)
                 startScan()
             }
             BPMProtocol.ConnectState.Disconnect -> {
                 isConnecting = false
                 //view model
-                vm.setConnectState(false)
+                vm.setConnectState("Disconnected")
+                vm.setIsConnect(false)
                 logListAdapter?.addLog("Disconnected", model = vm)
                 startScan()
             }
             BPMProtocol.ConnectState.ScanFinish -> {
+                //view model
+                vm.setConnectState("ScanFinish")
                 logListAdapter?.addLog("ScanFinish", model = vm)
                 startScan()
             }

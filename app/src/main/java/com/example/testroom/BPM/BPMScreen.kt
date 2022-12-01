@@ -38,7 +38,8 @@ fun BPMScreen(model: BPMViewModel) {
     if(isConnected) {
         Global.bpmProtocol!!.readHistorysOrCurrDataAndSyncTiming()
     }
-    
+
+    //顯示介面
     val allBPMs by model.liveData.observeAsState(listOf())
     val list = allBPMs
 

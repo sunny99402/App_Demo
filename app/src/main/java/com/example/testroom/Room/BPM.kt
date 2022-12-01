@@ -2,6 +2,7 @@ package com.example.testroom.Room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.example.testroom.Room.BPM.Companion.TABLE_NAME
 
@@ -13,7 +14,8 @@ class BPM {
     }
 
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "_id") var id: Int = 0
+    @ColumnInfo(name = "_id")
+    var id: Int = 0
 
     @ColumnInfo(name = "USER_NUMBER")
     var userNumber: String = ""
@@ -59,5 +61,4 @@ class BPM {
 
     @ColumnInfo(name = "RECORD_TIME")
     var recordTime: String? = ""
-
 }

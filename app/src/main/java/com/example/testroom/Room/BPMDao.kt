@@ -14,8 +14,8 @@ interface BPMDao {
     @Query("SELECT * FROM bpm_entity")
     fun getAllBPMs(): LiveData<List<BPM>>
 
-    @Query("SELECT * FROM bpm_entity WHERE _id=:id")
-    suspend fun getBPMById(id: Long): BPM?
+    @Query("SELECT * FROM bpm_entity WHERE _id= :id")
+    fun getBPMById(id: Long): BPM
 
     @Delete
     fun delete(item: BPM)
