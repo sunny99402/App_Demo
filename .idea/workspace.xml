@@ -14,27 +14,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="548c5a58-e70f-408b-8c37-a0488d997ad3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/testroom/BPM/BPMScreenKt$TestPreview$1.dex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/testroom/LiveLiterals$LogListAdapterKt.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/testroom/LiveLiterals$LogListAdapterKt.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/testroom/LogListAdapter.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/out/com/example/testroom/LogListAdapter.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.keystream.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.len" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab.len" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab_i" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/kaptGenerateStubsDebugKotlin/caches-jvm/jvm/kotlin/subtypes.tab_i" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/com/example/testroom/LogListAdapter.kapt_metadata" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kapt3/stubs/debug/com/example/testroom/LogListAdapter.kapt_metadata" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPM/BPMScreenKt$TestPreview$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPM/BPMScreenKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPM/BPMScreenKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPM/BPMTestActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPM/BPMTestActivity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPM/LiveLiterals$BPMScreenKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPM/LiveLiterals$BPMScreenKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPMViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/BPMViewModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/LiveLiterals$LogListAdapterKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/LiveLiterals$LogListAdapterKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/LogListAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/com/example/testroom/LogListAdapter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/BPM/BPMScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/BPM/BPMScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/BPM/BPMTestActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/BPM/BPMTestActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/BPMViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/BPMViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/Room/BPM.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/Room/BPM.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/Room/BPMDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/testroom/Room/BPMDao.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,13 +175,29 @@
       <option name="project" value="LOCAL" />
       <updated>1669798741652</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="資料庫為空才填入">
+      <created>1669878940297</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669878940297</updated>
+    </task>
+    <task id="LOCAL-00005" summary="修正重複填入的問題&#10;用date和timePeriod判斷">
+      <created>1669944278153</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1669944278153</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="顯示連線時的資料，未建立資料庫" />
     <MESSAGE value="在RespondReadHistory建立資料庫，重複連線會有資料重複的問題" />
     <MESSAGE value="lazyColumn介面&#10;連線時填入資料庫，有重複填入的問題" />
-    <option name="LAST_COMMIT_MESSAGE" value="lazyColumn介面&#10;連線時填入資料庫，有重複填入的問題" />
+    <MESSAGE value="資料庫為空才填入" />
+    <MESSAGE value="修正重複填入的問題&#10;用date和timePeriod判斷" />
+    <option name="LAST_COMMIT_MESSAGE" value="修正重複填入的問題&#10;用date和timePeriod判斷" />
   </component>
 </project>

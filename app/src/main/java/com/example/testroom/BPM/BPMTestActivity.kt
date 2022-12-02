@@ -14,6 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
 import com.example.testroom.BPMViewModel
+import com.example.testroom.ChoseScreen
 import com.example.testroom.Global
 import com.example.testroom.LogListAdapter
 import com.example.testroom.Room.MyDatabase
@@ -57,6 +58,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
             Global.bpmProtocol!!.readHistorysOrCurrDataAndSyncTiming()
         }
         setContent {
+            //ChoseScreen()
             BPMScreen(vm)
         }
     }

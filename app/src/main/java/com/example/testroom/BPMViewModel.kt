@@ -2,11 +2,9 @@ package com.example.testroom
 
 import android.app.Application
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.lifecycle.*
 import com.example.testroom.Room.MyDatabase
 import com.example.testroom.Room.BPM
-import com.example.testroom.Room.BPMDao
 import com.ideabus.model.data.DRecord
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -50,29 +48,40 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
 
     @OptIn(DelicateCoroutinesApi::class)
     fun insertDatabase() {
-        for(i in dRecord.MData) {
-            GlobalScope.launch {
-                var bpm = BPM().apply {
-                    userNumber = dRecord.userNumber.toString()
-                    accountId = ""
-                    sys = i.systole
-                    dia = i.dia
-                    pul = 0
-                    date = "${i.year}/${i.month}/${i.day}"
-                    timePeriod = "${i.hour}:${i.minute}"
-                    afib = i.AFIb
-                    pad = 0
-                    mam = i.MAM
-                    cuffokr = i.cuffokr
-                    photoPath = ""
-                    note = ""
-                    recordingPath = ""
-                    recordTime = ""
-                }
-                if(liveData.value?.isEmpty() == true) {
-                    bpmDao.insert(bpm)
-                }
+        var isExisted: Boolean = false
+            for(i in dRecord.MData) {
+            var bpm = BPM().apply {
+                userNumber = dRecord.userNumber.toString()
+                accountId = ""
+                sys = i.systole
+                dia = i.dia
+                pul = 0
+                date = "${i.year}/${i.month}/${i.day}"
+                timePeriod = "${i.hour}:${i.minute}"
+                afib = i.AFIb
+                pad = 0
+                mam = i.MAM
+                cuffokr = i.cuffokr
+                photoPath = ""
+                note = ""
+                recordingPath = ""
+                recordTime = ""
             }
+                if(liveData.value?.isEmpty() == true) {
+                    isExisted = false
+                } else {
+                    for(j in liveData.value!!) {
+                        if(bpm.date == j.date && bpm.timePeriod ==j.timePeriod) {
+                            isExisted = true
+                            break
+                        }
+                    }
+                }
+                GlobalScope.launch {
+                    if(!isExisted) {
+                        bpmDao.insert(bpm)
+                    }
+                }
         }
     }
 }
