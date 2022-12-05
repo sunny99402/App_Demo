@@ -1,8 +1,5 @@
 package com.example.testroom.BPM
 
-import android.Manifest
-import android.app.AlertDialog
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,32 +9,16 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.core.app.ActivityCompat
-import com.example.testroom.BPMViewModel
-import com.example.testroom.ChoseScreen
 import com.example.testroom.Global
 import com.example.testroom.LogListAdapter
-import com.example.testroom.Room.MyDatabase
 import com.ideabus.ideabuslibrary.util.BaseUtils
 import com.ideabus.model.bluetooth.MyBluetoothLE
 import com.ideabus.model.data.*
 import com.ideabus.model.protocol.BPMProtocol
-import kotlinx.coroutines.launch
 
 class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
     View.OnClickListener, BPMProtocol.OnDataResponseListener, BPMProtocol.OnNotifyStateListener,
     MyBluetoothLE.OnWriteStateListener {
-    //permission
-    private val Permission = arrayOf(
-        Manifest.permission.ACCESS_COARSE_LOCATION,
-        Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.BLUETOOTH,
-        Manifest.permission.BLUETOOTH_ADMIN,
-        Manifest.permission.BLUETOOTH_SCAN,
-        Manifest.permission.BLUETOOTH_CONNECT
-    )
-    private val Location_Request = 1
-    //
     val TAG = "BPMTestActivity"
     var logListAdapter: LogListAdapter? = null
     var isConnecting = false
@@ -46,8 +27,6 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //check permission
-        checkPermission()
         //Initialize the body ester machine Bluetooth module
         initParam()
         //build database
@@ -58,8 +37,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
             Global.bpmProtocol!!.readHistorysOrCurrDataAndSyncTiming()
         }
         setContent {
-            //ChoseScreen()
-            BPMScreen(vm)
+            BPMScreen(model = vm)
         }
     }
 
@@ -100,71 +78,6 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
         vm.setConnectState("start scan")
         logListAdapter?.addLog("start scan", model = vm)
         Global.bpmProtocol!!.startScan(10)
-    }
-
-    private fun checkPermission() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.BLUETOOTH
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.BLUETOOTH_ADMIN
-            ) != PackageManager.PERMISSION_GRANTED  ||
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.BLUETOOTH_SCAN
-            ) != PackageManager.PERMISSION_GRANTED ||
-            ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.BLUETOOTH_CONNECT
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                ) ||
-                ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ) ||
-                ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.BLUETOOTH_SCAN
-                ) ||
-                ActivityCompat.shouldShowRequestPermissionRationale(
-                    this,
-                    Manifest.permission.BLUETOOTH
-                )
-            ) {
-                val builder = AlertDialog.Builder(this)
-                builder.setMessage("需要給予權限，否則不能連接設備")
-                builder.setPositiveButton(
-                    "是"
-                ) { dialog, which ->
-                    ActivityCompat.requestPermissions(
-                        this@BPMTestActivity,
-                        Permission,
-                        Location_Request,
-                    )
-                }
-                builder.setNeutralButton("否", null)
-            } else {
-                ActivityCompat.requestPermissions(
-                    this@BPMTestActivity,
-                    Permission,
-                    Location_Request
-                )
-            }
-        }
     }
 
     override fun onClick(v: View) {

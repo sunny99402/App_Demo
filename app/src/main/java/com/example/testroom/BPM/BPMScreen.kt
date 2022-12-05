@@ -3,7 +3,6 @@ package com.example.testroom.BPM
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,17 +17,17 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.testroom.BPMViewModel
 import com.example.testroom.Global
 import com.example.testroom.Room.BPM
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.example.testroom.R
+import androidx.compose.foundation.layout.Arrangement
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
@@ -45,10 +44,11 @@ fun BPMScreen(model: BPMViewModel) {
 
     val connectState by mutableStateOf(model.connectState)
 
+    //val rowCount by mutableStateOf(model.rowCount) //test
+
     Scaffold(
         topBar = { TopBar() },
-        modifier = Modifier
-            .background(Color(240, 240,240))
+        modifier = Modifier.background(Color(240, 240,240))
     ) {
         Column()
         {
@@ -145,9 +145,14 @@ fun CardView(
 @Composable
 fun TopBar() {
     TopAppBar(
-        //modifier = Modifier.fillMaxWidth(),
         backgroundColor = Color.White) {
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                text = "BPM Screen",
+                fontSize = 20.sp,)
             Spacer(modifier = Modifier.weight(1f))
             TextButton(onClick = { Global.bpmProtocol!!.disconnect() }) {
                 Text(text = "disconnect")
@@ -155,4 +160,10 @@ fun TopBar() {
         }
 
     }
+}
+
+@Preview
+@Composable
+fun Pre() {
+    TopBar()
 }

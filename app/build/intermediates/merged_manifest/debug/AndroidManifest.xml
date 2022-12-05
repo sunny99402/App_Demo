@@ -52,16 +52,19 @@
         android:theme="@style/Theme.TestRoom" >
         <activity
             android:name="com.example.testroom.BPM.BPMTestActivity"
-            android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden" >
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.example.testroom.Chose.ChoseActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TestRoom" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
->
         <activity
             android:name="androidx.compose.ui.tooling.PreviewActivity"
             android:exported="true" />

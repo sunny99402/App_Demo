@@ -1,9 +1,9 @@
-package com.example.testroom
+package com.example.testroom.BPM
 
 import android.app.Application
 import androidx.compose.runtime.*
 import androidx.lifecycle.*
-import com.example.testroom.Room.MyDatabase
+import com.example.testroom.Room.MicrolifeDatabase
 import com.example.testroom.Room.BPM
 import com.ideabus.model.data.DRecord
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -15,18 +15,15 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
     val logListData: LiveData<List<String>>
         get() = _logListData
 
-    private val _bpmListData = MutableLiveData<List<BPM>>(emptyList())
-    val bpmListData: LiveData<List<BPM>>
-        get() = _bpmListData
-
     //database
-    private val database: MyDatabase = MyDatabase.getInstance(application)
+    private val database: MicrolifeDatabase = MicrolifeDatabase.getInstance(application)
     private val bpmDao = database.getRoomDao()
     val liveData = database.getRoomDao().getAllBPMs()
 
     var isConnected by mutableStateOf(false)
     var connectState by mutableStateOf("")
     var dRecord by mutableStateOf(DRecord())
+    var lastBPM by mutableStateOf(BPM())
 
     fun addLogData(param: String) {
         _logListData.value = _logListData.value?.let { it + listOf(param) }
@@ -55,7 +52,7 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
                 accountId = ""
                 sys = i.systole
                 dia = i.dia
-                pul = 0
+                pul = i.systole - i.dia
                 date = "${i.year}/${i.month}/${i.day}"
                 timePeriod = "${i.hour}:${i.minute}"
                 afib = i.AFIb
@@ -80,8 +77,15 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
                 GlobalScope.launch {
                     if(!isExisted) {
                         bpmDao.insert(bpm)
+                        setLastBPM(bpm)
                     }
                 }
         }
     }
+
+    @JvmName("setLastBPM1")
+    private fun setLastBPM(bpm: BPM) {
+        this.lastBPM = bpm
+    }
+
 }

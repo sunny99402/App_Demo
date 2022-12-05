@@ -4,18 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 
 @Database(entities = [(BPM::class)], version = 1)
-abstract class MyDatabase() : RoomDatabase() {
+abstract class MicrolifeDatabase() : RoomDatabase() {
 
     companion object {
-        private var instance: MyDatabase? = null
-        private var DB_NAME = "bpm.db"
+        private var instance: MicrolifeDatabase? = null
+        private var DB_NAME = "microlife.db"
 
-        fun getInstance(context: Context): MyDatabase {
-            return instance ?: Room.databaseBuilder(context, MyDatabase::class.java, DB_NAME)
+        fun getInstance(context: Context): MicrolifeDatabase {
+            return instance ?: Room.databaseBuilder(context, MicrolifeDatabase::class.java, DB_NAME)
 //                .fallbackToDestructiveMigration()
                 .build().also { instance = it }
         }
