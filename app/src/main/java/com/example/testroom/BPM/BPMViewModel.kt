@@ -11,10 +11,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class BPMViewModel(application: Application) : AndroidViewModel(application) {
-    private val _logListData = MutableLiveData<List<String>>(emptyList())
-    val logListData: LiveData<List<String>>
-        get() = _logListData
-
     //database
     private val database: MicrolifeDatabase = MicrolifeDatabase.getInstance(application)
     private val bpmDao = database.getRoomDao()
@@ -24,10 +20,6 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
     var connectState by mutableStateOf("")
     var dRecord by mutableStateOf(DRecord())
     var lastBPM by mutableStateOf(BPM())
-
-    fun addLogData(param: String) {
-        _logListData.value = _logListData.value?.let { it + listOf(param) }
-    }
 
     fun setIsConnect(b: Boolean) {
         this.isConnected = b
@@ -52,7 +44,7 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
                 accountId = ""
                 sys = i.systole
                 dia = i.dia
-                pul = i.systole - i.dia
+                pul = 0
                 date = "${i.year}/${i.month}/${i.day}"
                 timePeriod = "${i.hour}:${i.minute}"
                 afib = i.AFIb

@@ -76,7 +76,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
             return
         }
         vm.setConnectState("start scan")
-        logListAdapter?.addLog("start scan", model = vm)
+        logListAdapter?.addLog("start scan")
         Global.bpmProtocol!!.startScan(10)
     }
 
@@ -84,33 +84,33 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
     }
 
     override fun onWriteMessage(isSuccess: Boolean, message: String) {
-        logListAdapter?.addLog("WRITE : $message", model = vm)
+        logListAdapter?.addLog("WRITE : $message")
     }
 
     override fun onNotifyMessage(message: String) {
-        logListAdapter?.addLog("NOTIFY : $message", model = vm)
+        logListAdapter?.addLog("NOTIFY : $message")
     }
 
     override fun onResponseReadHistory(dRecord: DRecord) {
-        logListAdapter?.addLog("BPM : ReadHistory -> DRecord = $dRecord", model = vm)
+        logListAdapter?.addLog("BPM : ReadHistory -> DRecord = $dRecord")
         //build database
         vm.setDRecord(dRecord)
         vm.insertDatabase()
     }
 
     override fun onResponseClearHistory(isSuccess: Boolean) {
-        logListAdapter?.addLog("BPM : ClearHistory -> isSuccess = $isSuccess", model = vm)
+        logListAdapter?.addLog("BPM : ClearHistory -> isSuccess = $isSuccess")
     }
 
     override fun onResponseReadUserAndVersionData(user: User, versionData: VersionData) {
         logListAdapter?.addLog(
             "BPM : ReadUserAndVersionData -> user = " + user +
                     " , versionData = " + versionData
-            , model = vm)
+        )
     }
 
     override fun onResponseWriteUser(isSuccess: Boolean) {
-        logListAdapter?.addLog("BPM : WriteUser -> isSuccess = $isSuccess", model = vm)
+        logListAdapter?.addLog("BPM : WriteUser -> isSuccess = $isSuccess")
     }
 
     override fun onResponseReadLastData(
@@ -125,23 +125,23 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
                     " historyMeasuremeNumber = " + historyMeasuremeNumber +
                     " userNumber = " + userNumber + " MAMState = " + MAMState +
                     " isNoData = " + isNoData
-            , model = vm)
+            )
     }
 
     override fun onResponseClearLastData(isSuccess: Boolean) {
-        logListAdapter?.addLog("BPM : ClearLastData -> isSuccess = $isSuccess", model = vm)
+        logListAdapter?.addLog("BPM : ClearLastData -> isSuccess = $isSuccess")
     }
 
     override fun onResponseReadDeviceInfo(deviceInfo: DeviceInfo) {
-        logListAdapter?.addLog("BPM : ReadDeviceInfo -> DeviceInfo = $deviceInfo", model = vm)
+        logListAdapter?.addLog("BPM : ReadDeviceInfo -> DeviceInfo = $deviceInfo")
     }
 
     override fun onResponseWriteDeviceTime(isSuccess: Boolean) {
-        logListAdapter?.addLog("BPM : Write -> DeviceTime = $isSuccess", model = vm)
+        logListAdapter?.addLog("BPM : Write -> DeviceTime = $isSuccess")
     }
 
     override fun onResponseReadDeviceTime(deviceInfo: DeviceInfo) {
-        logListAdapter?.addLog("BPM : Read -> DeviceTime = $deviceInfo", model = vm)
+        logListAdapter?.addLog("BPM : Read -> DeviceTime = $deviceInfo")
     }
 
     override fun onBtStateChanged(isEnable: Boolean) {
@@ -158,7 +158,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
         BaseUtils.printLog("d", TAG, "1026 onScanResult:$name")
         //Blood pressure machine
         if (!name.startsWith("n/a")) {
-            logListAdapter?.addLog("onScanResult：$name mac:$mac rssi:$rssi", model = vm)
+            logListAdapter?.addLog("onScanResult：$name mac:$mac rssi:$rssi")
         }
         if (isConnecting) return
         isConnecting = true
@@ -166,11 +166,11 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
         Global.bpmProtocol!!.stopScan()
         //Connection
         if (name.startsWith("A")) {
-            logListAdapter?.addLog("3G Model！", model = vm)
+            logListAdapter?.addLog("3G Model！")
             Global.bpmProtocol!!.connect(mac)
 
         } else {
-            logListAdapter?.addLog("4G Model！", model = vm)
+            logListAdapter?.addLog("4G Model！")
             Global.bpmProtocol!!.bond(mac)
         }
 
@@ -184,14 +184,14 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
                 //view model
                 vm.setConnectState("Connected")
                 vm.setIsConnect(true)
-                logListAdapter?.addLog("Connected", model = vm)
+                logListAdapter?.addLog("Connected")
             }
             BPMProtocol.ConnectState.ConnectTimeout -> {
                 isConnecting = false
                 //view model
                 vm.setConnectState("ConnectTimeOut")
                 vm.setIsConnect(false)
-                logListAdapter?.addLog("ConnectTimeout", model = vm)
+                logListAdapter?.addLog("ConnectTimeout")
                 startScan()
             }
             BPMProtocol.ConnectState.Disconnect -> {
@@ -199,13 +199,13 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
                 //view model
                 vm.setConnectState("Disconnected")
                 vm.setIsConnect(false)
-                logListAdapter?.addLog("Disconnected", model = vm)
+                logListAdapter?.addLog("Disconnected")
                 startScan()
             }
             BPMProtocol.ConnectState.ScanFinish -> {
                 //view model
                 vm.setConnectState("ScanFinish")
-                logListAdapter?.addLog("ScanFinish", model = vm)
+                logListAdapter?.addLog("ScanFinish")
                 startScan()
             }
         }

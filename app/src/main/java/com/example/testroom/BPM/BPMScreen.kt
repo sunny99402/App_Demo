@@ -27,7 +27,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.testroom.R
-import androidx.compose.foundation.layout.Arrangement
 
 @SuppressLint("UnrememberedMutableState")
 @Composable

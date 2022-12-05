@@ -7,9 +7,11 @@ import androidx.core.app.ActivityCompat
 import android.Manifest
 import android.app.AlertDialog
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.activity.viewModels
 import com.example.testroom.BPM.BPMViewModel
 import com.example.testroom.ChoseScreen
+import com.example.testroom.Global
 
 class ChoseActivity : ComponentActivity() {
     private val vm by viewModels<BPMViewModel>()
@@ -29,9 +31,16 @@ class ChoseActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         //permission
         checkPermission()
+
         setContent {
             ChoseScreen(vm)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Global.bpmProtocol?.stopScan()
+        Global.thermoProtocol?.stopScan()
     }
 
     private fun checkPermission() {

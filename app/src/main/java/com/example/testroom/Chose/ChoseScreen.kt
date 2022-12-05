@@ -27,6 +27,7 @@ import com.example.testroom.BPM.BPMTestActivity
 import com.example.testroom.BPM.BPMViewModel
 import com.example.testroom.BPM.TopBar
 import com.example.testroom.Chose.BPMCardView
+import com.example.testroom.Chose.BTCardView
 import com.example.testroom.Chose.PulseCardView
 import com.example.testroom.Room.BPM
 
@@ -44,7 +45,7 @@ fun ChoseScreen(model: BPMViewModel) {
         topBar = { ChoseScreenTopBar() },
         modifier = Modifier.background(Color(240, 240,240))
     ) {
-        var h: Int = 300  //欄高
+        var h: Int = 350  //欄高
         LazyVerticalGrid(
             cells = GridCells.Fixed(2),
             verticalArrangement = Arrangement.spacedBy(4.dp),
@@ -105,6 +106,14 @@ fun ChoseScreen(model: BPMViewModel) {
                     color = Color(135, 206, 255),
                 )
             }
+            item() {
+                BTCardView(
+                    context = context,
+                    h = h,
+                    title = "Body Temperature",
+                    color = Color(255,181,197),
+                )
+            }
         }
     }
 }
@@ -130,7 +139,7 @@ fun CardView(
             Text(
                 text = " $title",
                 color = Color.White,
-                fontSize = 20.sp)
+                fontSize = 28.sp)
 
             Text(content)
 

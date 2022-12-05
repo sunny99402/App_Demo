@@ -16,12 +16,9 @@ class LogListAdapter() : BaseAdapter() {
         mLogData = ArrayList()
     }
 
-    fun addLog(message: String, model: BPMViewModel): MutableList<String> {
+    fun addLog(message: String,): MutableList<String> {
         Log.e("addLog", message)
         mLogData.add(message)
-
-        //view model
-        model.addLogData(message)
 
         notifyDataSetChanged()
         return mLogData

@@ -23,12 +23,12 @@ fun PulseCardView(
     h: Int,
     title: String,
     color: Color,
-    intentActivity: Activity = BPMTestActivity(), //刪除預設
+    intentActivity: Activity = BPMTestActivity(),
     bpm: BPM
 ){
     Card(
         modifier = Modifier
-            .fillMaxWidth()
+            .fillMaxSize()
             .height(h.dp)
             .clickable { context.startActivity(Intent(context, intentActivity::class.java)) },
         backgroundColor = color,
@@ -41,7 +41,10 @@ fun PulseCardView(
                 fontSize = 28.sp
             )
             Text(
-                text = "${bpm.date}, ${bpm.timePeriod}",
+                text =
+                if(bpm.date == "") {
+                    ""
+                } else {"${bpm.date}, ${bpm.timePeriod}"},
                 //color = Color.White,
                 fontSize = 20.sp,
                 modifier = Modifier.padding(5.dp)
