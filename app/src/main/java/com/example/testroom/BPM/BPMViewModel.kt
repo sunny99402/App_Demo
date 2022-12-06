@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.compose.runtime.*
 import androidx.lifecycle.*
 import com.example.testroom.Room.MicrolifeDatabase
-import com.example.testroom.Room.BPM
+import com.example.testroom.Room.entity.BPM
 import com.ideabus.model.data.DRecord
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -19,7 +19,6 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
     var isConnected by mutableStateOf(false)
     var connectState by mutableStateOf("")
     var dRecord by mutableStateOf(DRecord())
-    var lastBPM by mutableStateOf(BPM())
 
     fun setIsConnect(b: Boolean) {
         this.isConnected = b
@@ -37,16 +36,35 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
 
     @OptIn(DelicateCoroutinesApi::class)
     fun insertDatabase() {
-        var isExisted: Boolean = false
-            for(i in dRecord.MData) {
+        for(i in dRecord.MData) {
+            var isExisted: Boolean = false
             var bpm = BPM().apply {
                 userNumber = dRecord.userNumber.toString()
                 accountId = ""
                 sys = i.systole
                 dia = i.dia
-                pul = 0
-                date = "${i.year}/${i.month}/${i.day}"
-                timePeriod = "${i.hour}:${i.minute}"
+                pul = i.hr
+                date = "${i.year}/" +
+                        if(
+                            i.month<10) { "0${i.month}/"
+                        } else {
+                            "${i.month}/"
+                        } +
+                        if(
+                            i.day<10) { "0${i.day}"
+                        } else {
+                            "${i.day}"
+                        }
+                timePeriod = if(
+                    i.hour<10) { "0${i.hour}:"
+                } else {
+                    "${i.hour}:"
+                } +
+                        if(
+                            i.minute<10) { "0${i.minute}"
+                        } else {
+                            "${i.minute}"
+                        }
                 afib = i.AFIb
                 pad = 0
                 mam = i.MAM
@@ -56,28 +74,16 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
                 recordingPath = ""
                 recordTime = ""
             }
-                if(liveData.value?.isEmpty() == true) {
-                    isExisted = false
-                } else {
-                    for(j in liveData.value!!) {
-                        if(bpm.date == j.date && bpm.timePeriod ==j.timePeriod) {
-                            isExisted = true
-                            break
-                        }
-                    }
+            for(j in liveData.value!!) {
+                if(bpm.date == j.date && bpm.timePeriod == j.timePeriod) {
+                    isExisted = true
                 }
-                GlobalScope.launch {
-                    if(!isExisted) {
-                        bpmDao.insert(bpm)
-                        setLastBPM(bpm)
-                    }
+            }
+            GlobalScope.launch {
+                if(!isExisted) {
+                    bpmDao.insert(bpm)
                 }
+            }
         }
     }
-
-    @JvmName("setLastBPM1")
-    private fun setLastBPM(bpm: BPM) {
-        this.lastBPM = bpm
-    }
-
 }

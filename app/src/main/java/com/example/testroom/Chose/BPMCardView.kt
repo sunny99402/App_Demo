@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testroom.BPM.BPMTestActivity
-import com.example.testroom.Room.BPM
+import com.example.testroom.Room.entity.BPM
 
 @Composable
 fun BPMCardView(
@@ -23,7 +23,7 @@ fun BPMCardView(
     h: Int,
     title: String,
     color: Color,
-    intentActivity: Activity = BPMTestActivity(), //刪除預設
+    intentActivity: Activity = BPMTestActivity(),
     bpm: BPM
 ){
     Card(
@@ -40,7 +40,7 @@ fun BPMCardView(
             Text(
                 text = " $title ",
                 color = Color.White,
-                fontSize = 28.sp
+                fontSize = 22.sp
             )
             Text(
                 text =
@@ -48,18 +48,18 @@ fun BPMCardView(
                     ""
                 } else {"${bpm.date}, ${bpm.timePeriod}"},
                 //color = Color.White,
-                fontSize = 20.sp,
+                fontSize = 14.sp,
                 modifier = Modifier.padding(5.dp)
             )
-
+            Spacer(modifier = Modifier.height(20.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 30.dp, end = 30.dp)) {
+                    .padding(start = 20.dp, end = 20.dp)) {
                 Text(
                     text = "SYS",
                     color = Color.White,
-                    fontSize = 30.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(top = 15.dp)
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -69,7 +69,7 @@ fun BPMCardView(
                     Text(
                         text = "${bpm.sys}",
                         color = Color.White,
-                        fontSize = 50.sp
+                        fontSize = 42.sp
                     )
                     Text(
                         text = "mmHg",
@@ -84,11 +84,12 @@ fun BPMCardView(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 30.dp, end = 30.dp)) {
+                    .padding(start = 20.dp, end = 20.dp)
+            ) {
                 Text(
                     text = "DIA",
                     color = Color.White,
-                    fontSize = 30.sp,
+                    fontSize = 22.sp,
                     modifier = Modifier.padding(top = 15.dp)
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -98,7 +99,7 @@ fun BPMCardView(
                     Text(
                         text = "${bpm.dia}",
                         color = Color.White,
-                        fontSize = 50.sp
+                        fontSize = 42.sp
                     )
                     Text(
                         text = "mmHg",

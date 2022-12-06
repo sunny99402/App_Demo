@@ -184,6 +184,7 @@ class BPMTestActivity : ComponentActivity(), BPMProtocol.OnConnectStateListener,
                 //view model
                 vm.setConnectState("Connected")
                 vm.setIsConnect(true)
+
                 logListAdapter?.addLog("Connected")
             }
             BPMProtocol.ConnectState.ConnectTimeout -> {

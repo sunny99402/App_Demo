@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testroom.BPM.BPMTestActivity
-import com.example.testroom.Room.BPM
+import com.example.testroom.Room.entity.BPM
 
 @Composable
 fun PulseCardView(
@@ -38,7 +38,7 @@ fun PulseCardView(
             Text(
                 text = " $title",
                 color = Color.White,
-                fontSize = 28.sp
+                fontSize = 22.sp
             )
             Text(
                 text =
@@ -46,14 +46,14 @@ fun PulseCardView(
                     ""
                 } else {"${bpm.date}, ${bpm.timePeriod}"},
                 //color = Color.White,
-                fontSize = 20.sp,
+                fontSize = 14.sp,
                 modifier = Modifier.padding(5.dp)
             )
-
+            Spacer(modifier = Modifier.height(20.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 30.dp, end = 30.dp)
+                    .padding(start = 20.dp, end = 20.dp)
             ) {
                 Spacer(modifier = Modifier.weight(1f))
                 Column(
@@ -62,7 +62,7 @@ fun PulseCardView(
                     Text(
                         text = "${bpm.pul}",
                         color = Color.White,
-                        fontSize = 50.sp
+                        fontSize = 42.sp
                     )
                     Text(
                         text = "bpm",

@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -20,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testroom.Global
-import com.example.testroom.Room.BPM
+import com.example.testroom.Room.entity.BPM
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
@@ -43,10 +42,8 @@ fun BPMScreen(model: BPMViewModel) {
 
     val connectState by mutableStateOf(model.connectState)
 
-    //val rowCount by mutableStateOf(model.rowCount) //test
-
     Scaffold(
-        topBar = { TopBar() },
+        topBar = { BPMTopBar() },
         modifier = Modifier.background(Color(240, 240,240))
     ) {
         Column()
@@ -56,13 +53,12 @@ fun BPMScreen(model: BPMViewModel) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .wrapContentWidth(Alignment.CenterHorizontally)
-                    //.background(Color.LightGray)
                     .padding(10.dp),
                 fontSize = 20.sp,
             )
             LazyColumn() {
                 items(list) { bpm ->
-                    CardView(
+                    BPMCardView(
                         title = "Blood Pressure",
                         bpm = bpm, image = painterResource(id = R.drawable.bp),
                         viewModel = model
@@ -74,25 +70,22 @@ fun BPMScreen(model: BPMViewModel) {
 }
 
 @Composable
-fun CardView(
+fun BPMCardView(
     title: String,
     bpm: BPM,
     image: Painter,
     viewModel: BPMViewModel
 ) {
-    var openDetailDialog = remember { mutableStateOf(false) }
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {
-                openDetailDialog.value = true
-            }
-            .padding(10.dp),
+            .clickable {  }
+            .padding(5.dp),
         backgroundColor = Color(240,240,240)
     ) {
         Row(modifier = Modifier
             .padding(10.dp)
-            .background(Color(173, 208, 233))) {
+            .background(Color(202, 225, 255))) {
             Column(modifier = Modifier.padding(8.dp,8.dp,0.dp,10.dp)) {
                 Text(
                     text = title, fontSize = 25.sp,
@@ -142,7 +135,7 @@ fun CardView(
 }
 
 @Composable
-fun TopBar() {
+fun BPMTopBar() {
     TopAppBar(
         backgroundColor = Color.White) {
         Row(
@@ -164,5 +157,5 @@ fun TopBar() {
 @Preview
 @Composable
 fun Pre() {
-    TopBar()
+    BPMTopBar()
 }

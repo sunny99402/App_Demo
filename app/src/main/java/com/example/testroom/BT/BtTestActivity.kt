@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import com.example.testroom.BPM.BPMViewModel
 import com.example.testroom.Global
 import com.example.testroom.LogListAdapter
 import com.ideabus.model.bluetooth.MyBluetoothLE
@@ -17,6 +19,8 @@ class BtTestActivity : ComponentActivity(), ThermoProtocol.OnConnectStateListene
     MyBluetoothLE.OnWriteStateListener {
     var logListAdapter: LogListAdapter? = null
     private var isConnecting = false
+    //view model
+    private val vm by viewModels<BtViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //Initialize the body ester machine Bluetooth module
@@ -24,7 +28,7 @@ class BtTestActivity : ComponentActivity(), ThermoProtocol.OnConnectStateListene
 
         initParam()
         setContent {
-            BTScreen()
+            BTScreen(vm)
         }
     }
 
@@ -60,6 +64,7 @@ class BtTestActivity : ComponentActivity(), ThermoProtocol.OnConnectStateListene
         }
         logListAdapter?.addLog("start scan")
         Global.thermoProtocol!!.startScan(10)
+        vm.setConnectState("Star scan")
     }
 
     override fun onStop() {
@@ -107,18 +112,22 @@ class BtTestActivity : ComponentActivity(), ThermoProtocol.OnConnectStateListene
             ThermoProtocol.ConnectState.Connected -> {
                 isConnecting = false
                 logListAdapter?.addLog("Connected")
+                vm.setConnectState("Connected")
             }
             ThermoProtocol.ConnectState.ConnectTimeout -> {
                 isConnecting = false
                 logListAdapter?.addLog("ConnectTimeout")
+                vm.setConnectState("Connect timeout")
             }
             ThermoProtocol.ConnectState.Disconnect -> {
                 isConnecting = false
                 logListAdapter?.addLog("Disconnected")
+                vm.setConnectState("Disconnected")
                 startScan()
             }
             ThermoProtocol.ConnectState.ScanFinish -> {
                 logListAdapter?.addLog("ScanFinish")
+                vm.setConnectState("ScanFinish")
                 startScan()
             }
         }
