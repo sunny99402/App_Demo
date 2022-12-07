@@ -38,33 +38,21 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
     fun insertDatabase() {
         for(i in dRecord.MData) {
             var isExisted: Boolean = false
-            var bpm = BPM().apply {
+            val bpm = BPM().apply {
                 userNumber = dRecord.userNumber.toString()
                 accountId = ""
                 sys = i.systole
                 dia = i.dia
                 pul = i.hr
-                date = "${i.year}/" +
-                        if(
-                            i.month<10) { "0${i.month}/"
-                        } else {
-                            "${i.month}/"
-                        } +
-                        if(
-                            i.day<10) { "0${i.day}"
-                        } else {
-                            "${i.day}"
-                        }
-                timePeriod = if(
-                    i.hour<10) { "0${i.hour}:"
-                } else {
-                    "${i.hour}:"
-                } +
-                        if(
-                            i.minute<10) { "0${i.minute}"
-                        } else {
-                            "${i.minute}"
-                        }
+                date = "${i.year}-" +
+                        if(i.month<10) { "0${i.month}-" } else { "${i.month}-" } +
+                        if(i.day<10) { "0${i.day}, " } else { "${i.day}, " } +
+                        if(i.hour<10) { "0${i.hour}:" } else { "${i.hour}:" } +
+                        if(i.minute<10) { "0${i.minute}" } else { "${i.minute}" }
+                timePeriod =
+                    if(i.AM) { "AM" }
+                    else if(i.PM) { "PM" }
+                    else { "ALL" }
                 afib = i.AFIb
                 pad = 0
                 mam = i.MAM
@@ -75,7 +63,7 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
                 recordTime = ""
             }
             for(j in liveData.value!!) {
-                if(bpm.date == j.date && bpm.timePeriod == j.timePeriod) {
+                if(bpm.date == j.date) {
                     isExisted = true
                 }
             }

@@ -43,10 +43,7 @@ fun BPMCardView(
                 fontSize = 22.sp
             )
             Text(
-                text =
-                if(bpm.date == "") {
-                    ""
-                } else {"${bpm.date}, ${bpm.timePeriod}"},
+                text = bpm.date,
                 //color = Color.White,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(5.dp)

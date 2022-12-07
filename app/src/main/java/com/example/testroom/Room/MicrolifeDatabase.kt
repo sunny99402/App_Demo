@@ -1,7 +1,6 @@
 package com.example.testroom.Room
 
 import android.content.Context
-import androidx.room.AutoMigration
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -25,6 +24,5 @@ abstract class MicrolifeDatabase() : RoomDatabase() {
                 .build().also { instance = it }
         }
     }
-
     abstract fun getRoomDao(): Dao
 }

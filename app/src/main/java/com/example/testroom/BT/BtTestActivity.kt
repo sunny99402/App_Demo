@@ -6,6 +6,8 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import com.example.testroom.BPM.BPMViewModel
 import com.example.testroom.Global
 import com.example.testroom.LogListAdapter
@@ -82,6 +84,9 @@ class BtTestActivity : ComponentActivity(), ThermoProtocol.OnConnectStateListene
 
     override fun onResponseUploadMeasureData(data: ThermoMeasureData) {
         logListAdapter?.addLog("THERMO : UploadMeasureData -> ThermoMeasureData = $data")
+
+        //insert database
+        vm.insertDatabase(data)
     }
 
     override fun onBtStateChanged(isEnable: Boolean) {
@@ -113,16 +118,19 @@ class BtTestActivity : ComponentActivity(), ThermoProtocol.OnConnectStateListene
                 isConnecting = false
                 logListAdapter?.addLog("Connected")
                 vm.setConnectState("Connected")
+                vm.setIsConnect(true)
             }
             ThermoProtocol.ConnectState.ConnectTimeout -> {
                 isConnecting = false
                 logListAdapter?.addLog("ConnectTimeout")
                 vm.setConnectState("Connect timeout")
+                vm.setIsConnect(false)
             }
             ThermoProtocol.ConnectState.Disconnect -> {
                 isConnecting = false
                 logListAdapter?.addLog("Disconnected")
                 vm.setConnectState("Disconnected")
+                vm.setIsConnect(false)
                 startScan()
             }
             ThermoProtocol.ConnectState.ScanFinish -> {

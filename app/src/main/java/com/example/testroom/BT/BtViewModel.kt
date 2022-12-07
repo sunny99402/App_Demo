@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import com.example.testroom.Room.MicrolifeDatabase
 import com.example.testroom.Room.entity.BPM
 import com.example.testroom.Room.entity.Bt
+import com.ideabus.model.data.ThermoMeasureData
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -18,7 +19,12 @@ class BtViewModel(application: Application) : AndroidViewModel(application) {
     private val btDao = database.getRoomDao()
     val liveData = database.getRoomDao().getAllBts()
 
+    var isConnected by mutableStateOf(false)
     var connectState by mutableStateOf("")
+
+    fun setIsConnect(b: Boolean) {
+        this.isConnected = b
+    }
 
     @JvmName("setConnectState1")
     fun setConnectState(s: String) {
@@ -26,9 +32,26 @@ class BtViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     @OptIn(DelicateCoroutinesApi::class)
-    fun insertDatabase(bt: Bt) {
-        GlobalScope.launch {
-            btDao.insert(bt)
+    fun insertDatabase(data: ThermoMeasureData) {
+        var isExisted: Boolean = false
+        val bt = Bt().apply {
+            bodyTemp = data.measureTemperature
+            roomTemp = data.ambientTemperature
+            date = "20${data.year}-" +
+                    if(data.month<10) { "0${data.month}-" } else { "${data.month}-" } +
+                    if(data.day<10) { "0${data.day}, " } else { "${data.day}, " } +
+                    if(data.hour<10) { "0${data.hour}:" } else { "${data.hour}:" } +
+                    if(data.minute<10) { "0${data.minute}" } else { "${data.minute}" }
+        }
+        for(i in liveData.value!!) {
+            if(bt.date == i.date) {
+                isExisted = true
+            }
+        }
+        if(!isExisted) {
+            GlobalScope.launch {
+                btDao.insert(bt)
+            }
         }
     }
 }

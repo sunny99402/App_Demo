@@ -58,7 +58,7 @@ fun BPMScreen(model: BPMViewModel) {
             )
             LazyColumn() {
                 items(list) { bpm ->
-                    BPMCardView(
+                    BPMCard(
                         title = "Blood Pressure",
                         bpm = bpm, image = painterResource(id = R.drawable.bp),
                         viewModel = model
@@ -70,7 +70,7 @@ fun BPMScreen(model: BPMViewModel) {
 }
 
 @Composable
-fun BPMCardView(
+fun BPMCard(
     title: String,
     bpm: BPM,
     image: Painter,
@@ -79,7 +79,7 @@ fun BPMCardView(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {  }
+            .clickable { }
             .padding(5.dp),
         backgroundColor = Color(240,240,240)
     ) {
@@ -110,14 +110,12 @@ fun BPMCardView(
             Spacer(modifier = Modifier.weight(2f))
 
             Column(modifier = Modifier.padding(8.dp)) {
-                Text(
-                    text = bpm.date,
-                    fontSize = 15.sp)
 
+                val d = bpm.date.split(", ")
                 Text(
-                    text = bpm.timePeriod.toString(),
-                    fontSize = 15.sp)
-
+                    text = "${d[0]}\n${d[1]}",
+                    fontSize = 15.sp
+                )
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Box(modifier = Modifier.padding(top = 5.dp, end = 20.dp)) {

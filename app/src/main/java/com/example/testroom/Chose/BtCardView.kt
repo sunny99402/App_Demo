@@ -44,7 +44,7 @@ fun BTCardView(
                 text =
                 if(bt.date == "") {
                     ""
-                } else {"${bt.date}, ${bt.timePeriod}"},
+                } else {"${bt.date}"},
                 //color = Color.White,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(5.dp)
@@ -55,18 +55,12 @@ fun BTCardView(
                     .fillMaxWidth()
                     .padding(start = 20.dp, end = 20.dp)
             ) {
-                Text(
-                    text = "Bt",
-                    color = Color.White,
-                    fontSize = 22.sp,
-                    modifier = Modifier.padding(top = 15.dp)
-                )
                 Spacer(modifier = Modifier.weight(1f))
                 Column(
                     horizontalAlignment = Alignment.End
                 ) {
                     Text(
-                        text = "${bt.temperature}",
+                        text = "${bt.bodyTemp}",
                         color = Color.White,
                         fontSize = 42.sp
                     )

@@ -20,17 +20,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testroom.Global
 import com.example.testroom.R
 import com.example.testroom.Room.entity.Bt
-import kotlin.random.Random
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun BTScreen(model: BtViewModel) {
+    //填入資料庫
+    var t= ""
+    val isConnected by mutableStateOf(model.isConnected)
+    if(isConnected) {
+        t = Global.thermoProtocol!!.targetDeviceNames.toString()
+    }
+
     //顯示介面
     val allBts by model.liveData.observeAsState(listOf())
     val list = allBts
@@ -38,7 +43,7 @@ fun BTScreen(model: BtViewModel) {
     val connectState by mutableStateOf(model.connectState)
 
     Scaffold(
-        topBar = { BtTopBar() },
+        topBar = { BtTopBar(t) },
         modifier = Modifier.background(Color(240, 240,240))
     ) {
         Column() {
@@ -50,24 +55,9 @@ fun BTScreen(model: BtViewModel) {
                     .padding(10.dp),
                 fontSize = 20.sp,
             )
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .wrapContentWidth(Alignment.CenterHorizontally),
-                onClick = {
-                    model.insertDatabase(Bt().apply {
-                        userNumber = "123"
-                        temperature = (35..38).random()
-                        date = "2022/12/06"
-                        timePeriod = "13:21"
-                    })
-                }
-            ) {
-                Text(text = "insert")
-            }
             LazyColumn() {
                 items(list) { bt ->
-                    BtCardView(
+                    BtCard(
                         title = "Body Temperature",
                         bt = bt,
                         image = painterResource(id = R.drawable.bp),
@@ -81,7 +71,7 @@ fun BTScreen(model: BtViewModel) {
 }
 
 @Composable
-fun BtCardView(
+fun BtCard(
     title: String,
     bt: Bt,
     image: Painter,
@@ -106,7 +96,7 @@ fun BtCardView(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Text(
-                    text = "${bt.id}:  ${bt.temperature}°C",
+                    text = "${bt.id}:  ${bt.bodyTemp}°C",
                     fontSize = 20.sp,
                     modifier = Modifier.padding(start = 5.dp,top = 10.dp)
                 )
@@ -121,12 +111,10 @@ fun BtCardView(
             Spacer(modifier = Modifier.weight(2f))
 
             Column(modifier = Modifier.padding(8.dp)) {
-                Text(
-                    text = bt.date,
-                    fontSize = 15.sp)
 
+                val d = bt.date.split(", ")
                 Text(
-                    text = bt.timePeriod.toString(),
+                    text = "${d[0]}\n${d[1]}",
                     fontSize = 15.sp)
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -146,7 +134,7 @@ fun BtCardView(
 }
 
 @Composable
-fun BtTopBar() {
+fun BtTopBar(t: String) {
     TopAppBar(
         backgroundColor = Color.White) {
         Row(
@@ -161,6 +149,5 @@ fun BtTopBar() {
                 Text(text = "disconnect")
             }
         }
-
     }
 }
