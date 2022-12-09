@@ -1,6 +1,7 @@
 package com.example.testroom.BT
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -18,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -55,18 +57,25 @@ fun BTScreen(model: BtViewModel) {
                     .padding(10.dp),
                 fontSize = 20.sp,
             )
+
+            val bt = Bt().apply {
+                bodyTemp = (35..38).random().toFloat()
+                roomTemp = bodyTemp-1
+                date = "2022-12-09, 16:25"
+            }
+            Button(onClick = { model.insertDatabase(bt) }) {
+
+            }
+
             LazyColumn() {
                 items(list) { bt ->
                     BtCard(
                         title = "Body Temperature",
                         bt = bt,
-                        image = painterResource(id = R.drawable.bp),
-                        viewModel = model
                     )
                 }
             }
         }
-
     }
 }
 
@@ -74,14 +83,22 @@ fun BTScreen(model: BtViewModel) {
 fun BtCard(
     title: String,
     bt: Bt,
-    image: Painter,
-    viewModel: BtViewModel
+    isClickable: Boolean = false
 ) {
+    val context = LocalContext.current
+
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { }
-            .padding(5.dp),
+        modifier =
+        if(isClickable) {
+            Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .clickable { context.startActivity(Intent(context, BtTestActivity::class.java)) }
+        } else {
+            Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+        },
         backgroundColor = Color(240,240,240)
     ) {
         Row(modifier = Modifier
@@ -114,14 +131,15 @@ fun BtCard(
 
                 val d = bt.date.split(", ")
                 Text(
-                    text = "${d[0]}\n${d[1]}",
+                    //text = "${d[0]}\n${d[1]}",
+                    text = bt.date,
                     fontSize = 15.sp)
 
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Box(modifier = Modifier.padding(top = 5.dp, end = 20.dp)) {
                     Image(
-                        painter = image,
+                        painter = painterResource(id = R.drawable.bt),
                         contentDescription = "",
                         modifier = Modifier
                             .clip(CircleShape)

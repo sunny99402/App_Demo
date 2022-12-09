@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
+ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
+INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
+INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
+INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
 MERGED from [ideabuslibrary-2.0.7.aar] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\784d64bfaf8d3dfc9079f9859f1e15a7\transformed\ideabuslibrary-2.0.7\AndroidManifest.xml:2:1-25:12
 MERGED from [sdk-release.aar] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\d0db4af2bf26a60b682e3799b3d1a9b0\transformed\sdk-release\AndroidManifest.xml:2:1-28:12
 MERGED from [androidx.compose.ui:ui-tooling:1.1.1] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\445f95fa15efeea6ad48adecb783fc59\transformed\ui-tooling-1.1.1\AndroidManifest.xml:17:1-30:12
@@ -51,22 +51,22 @@ MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\Sunny.Lee\.gradle\
 MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.3.1] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\37a08a281522899188e76d19e27b8617\transformed\lifecycle-viewmodel-2.3.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\f15e6fab3f5f23fb061f9102cd5eeb7f\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\83575b45303cdd2320088b57654b8e3a\transformed\annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
-INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
+INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
+INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
+INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
 	package
 		INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
 		INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
 		INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-61:12
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:1-69:12
 		INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:2:11-69
@@ -125,7 +125,7 @@ MERGED from [ideabuslibrary-2.0.7.aar] C:\Users\Sunny.Lee\.gradle\caches\transfo
 	android:name
 		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:26:19-63
 application
-ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:28:5-60:19
+ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:28:5-68:19
 MERGED from [ideabuslibrary-2.0.7.aar] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\784d64bfaf8d3dfc9079f9859f1e15a7\transformed\ideabuslibrary-2.0.7\AndroidManifest.xml:19:5-23:19
 MERGED from [ideabuslibrary-2.0.7.aar] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\784d64bfaf8d3dfc9079f9859f1e15a7\transformed\ideabuslibrary-2.0.7\AndroidManifest.xml:19:5-23:19
 MERGED from [sdk-release.aar] C:\Users\Sunny.Lee\.gradle\caches\transforms-3\d0db4af2bf26a60b682e3799b3d1a9b0\transformed\sdk-release\AndroidManifest.xml:21:5-26:19
@@ -183,7 +183,7 @@ ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:45:13-46
 activity#com.example.testroom.Chose.ChoseActivity
-ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:49:9-59:20
+ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:49:9-55:20
 	android:label
 		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:52:13-45
 	android:exported
@@ -192,16 +192,26 @@ ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\Androi
 		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:53:13-50
 	android:name
 		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:50:13-48
+activity#com.example.testroom.chose2.ChoseActivity2
+ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:57:9-67:20
+	android:label
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:60:13-45
+	android:exported
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:59:13-36
+	android:theme
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:61:13-50
+	android:name
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:58:13-50
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:54:13-58:29
+ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:62:13-66:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:55:17-69
+ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:63:17-69
 	android:name
-		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:55:25-66
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:63:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:57:17-77
+ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:65:17-77
 	android:name
-		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:57:27-74
+		ADDED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml:65:27-74
 uses-sdk
 INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Sunny.Lee\AndroidStudioProjects\testRoom\app\src\main\AndroidManifest.xml

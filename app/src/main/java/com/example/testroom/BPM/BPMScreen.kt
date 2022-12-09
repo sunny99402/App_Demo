@@ -1,6 +1,9 @@
 package com.example.testroom.BPM
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -14,7 +17,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -23,8 +25,10 @@ import com.example.testroom.Room.entity.BPM
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.testroom.BT.BtTestActivity
 import com.example.testroom.R
 
 @SuppressLint("UnrememberedMutableState")
@@ -60,8 +64,7 @@ fun BPMScreen(model: BPMViewModel) {
                 items(list) { bpm ->
                     BPMCard(
                         title = "Blood Pressure",
-                        bpm = bpm, image = painterResource(id = R.drawable.bp),
-                        viewModel = model
+                        bpm = bpm,
                     )
                 }
             }
@@ -73,14 +76,22 @@ fun BPMScreen(model: BPMViewModel) {
 fun BPMCard(
     title: String,
     bpm: BPM,
-    image: Painter,
-    viewModel: BPMViewModel
+    isClickable: Boolean = false,
 ) {
+    val context = LocalContext.current
+
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable { }
-            .padding(5.dp),
+        modifier =
+        if(isClickable) {
+            Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+                .clickable { context.startActivity(Intent(context, BPMTestActivity::class.java)) }
+        } else {
+            Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+        },
         backgroundColor = Color(240,240,240)
     ) {
         Row(modifier = Modifier
@@ -113,14 +124,15 @@ fun BPMCard(
 
                 val d = bpm.date.split(", ")
                 Text(
-                    text = "${d[0]}\n${d[1]}",
+                    //text = "${d[0]}\n${d[1]}",
+                    text = bpm.date,
                     fontSize = 15.sp
                 )
                 Spacer(modifier = Modifier.height(10.dp))
 
                 Box(modifier = Modifier.padding(top = 5.dp, end = 20.dp)) {
                     Image(
-                        painter = image,
+                        painter = painterResource(id = R.drawable.bp),
                         contentDescription = "",
                         modifier = Modifier
                             .clip(CircleShape)

@@ -54,7 +54,7 @@ class BPMViewModel(application: Application) : AndroidViewModel(application) {
                     else if(i.PM) { "PM" }
                     else { "ALL" }
                 afib = i.AFIb
-                pad = 0
+                pad = if(i.arr || i.IHB) { 1 } else{ 0 }
                 mam = i.MAM
                 cuffokr = i.cuffokr
                 photoPath = ""

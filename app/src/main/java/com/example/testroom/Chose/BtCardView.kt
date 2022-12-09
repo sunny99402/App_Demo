@@ -44,7 +44,9 @@ fun BTCardView(
                 text =
                 if(bt.date == "") {
                     ""
-                } else {"${bt.date}"},
+                } else {
+                    bt.date
+                },
                 //color = Color.White,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(5.dp)

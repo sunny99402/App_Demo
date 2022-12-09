@@ -31,6 +31,12 @@ class BtViewModel(application: Application) : AndroidViewModel(application) {
         this.connectState = s
     }
 
+    fun insertDatabase(bt: Bt) {
+        GlobalScope.launch {
+            btDao.insert(bt)
+        }
+    }
+
     @OptIn(DelicateCoroutinesApi::class)
     fun insertDatabase(data: ThermoMeasureData) {
         var isExisted: Boolean = false

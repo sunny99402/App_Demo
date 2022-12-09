@@ -35,7 +35,7 @@ class BPM {
     var date: String = ""
 
     @ColumnInfo(name = "AM__PM")
-    var timePeriod: String? = ""
+    var timePeriod: String = ""
 
     @ColumnInfo(name = "AFIB")
     var afib: Boolean = false

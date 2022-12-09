@@ -51,6 +51,14 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TestRoom">
+
+        </activity>
+
+        <activity
+            android:name=".chose2.ChoseActivity2"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.TestRoom">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
