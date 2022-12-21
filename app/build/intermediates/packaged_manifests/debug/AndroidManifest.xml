@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.testroom"
+    package="com.example.App_Demo"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -51,21 +51,21 @@
         android:testOnly="true"
         android:theme="@style/Theme.TestRoom" >
         <activity
-            android:name="com.example.testroom.BPM.BPMTestActivity"
+            android:name="com.example.App_Demo.BPM.BPMTestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.example.testroom.BT.BtTestActivity"
+            android:name="com.example.App_Demo.BT.BtTestActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
         <activity
-            android:name="com.example.testroom.Chose.ChoseActivity"
+            android:name="com.example.App_Demo.Chose.ChoseActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TestRoom" >
         </activity>
         <activity
-            android:name="com.example.testroom.chose2.ChoseActivity2"
+            android:name="com.example.App_Demo.chose2.ChoseActivity2"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.TestRoom" >
@@ -89,7 +89,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.testroom.androidx-startup"
+            android:authorities="com.example.App_Demo.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.profileinstaller.ProfileInstallerInitializer"

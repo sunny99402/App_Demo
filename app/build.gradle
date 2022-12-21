@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.testroom'
+    namespace 'com.example.App_Demo'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.testroom"
+        applicationId "com.example.App_Demo"
         minSdk 29
         targetSdk 32
         versionCode 1

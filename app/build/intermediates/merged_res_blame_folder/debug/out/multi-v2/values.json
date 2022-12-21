@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.testroom.app-mergeDebugResources-40:/values/values.xml",
+            "outputFile": "com.example.App_Demo.app-mergeDebugResources-40:/values/values.xml",
             "map": [
-                {
-                    "source": "C:\\Users\\Sunny.Lee\\AndroidStudioProjects\\testRoom\\app\\src\\main\\res\\values\\colors.xml",
-                    "from": {
-                        "startLines": "7,2,3,4,5,6,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "293,57,105,153,201,247,336",
-                        "endColumns": "41,46,46,46,44,44,41",
-                        "endOffsets": "330,99,147,195,241,287,373"
-                    },
-                    "to": {
-                        "startLines": "5,8,9,10,11,12,14",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "370,544,591,638,685,730,824",
-                        "endColumns": "41,46,46,46,44,44,41",
-                        "endOffsets": "407,586,633,680,725,770,861"
-                    }
-                },
                 {
                     "source": "C:\\Users\\Sunny.Lee\\.gradle\\caches\\transforms-3\\54cc38311b536e908d47e6bf82725173\\transformed\\lifecycle-runtime-2.3.1\\res\\values\\values.xml",
                     "from": {
@@ -55,20 +38,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Sunny.Lee\\AndroidStudioProjects\\testRoom\\app\\src\\main\\res\\values\\strings.xml",
+                    "source": "C:\\Users\\Sunny.Lee\\AndroidStudioProjects\\App_Demo\\app\\src\\main\\res\\values\\colors.xml",
                     "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "17",
-                        "endColumns": "45",
-                        "endOffsets": "58"
+                        "startLines": "7,2,3,4,5,6,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "293,57,105,153,201,247,336",
+                        "endColumns": "41,46,46,46,44,44,41",
+                        "endOffsets": "330,99,147,195,241,287,373"
                     },
                     "to": {
-                        "startLines": "100",
-                        "startColumns": "4",
-                        "startOffsets": "5975",
-                        "endColumns": "45",
-                        "endOffsets": "6016"
+                        "startLines": "5,8,9,10,11,12,14",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "370,544,591,638,685,730,824",
+                        "endColumns": "41,46,46,46,44,44,41",
+                        "endOffsets": "407,586,633,680,725,770,861"
                     }
                 },
                 {
@@ -86,6 +69,25 @@
                         "startOffsets": "5665",
                         "endColumns": "53",
                         "endOffsets": "5714"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Sunny.Lee\\AndroidStudioProjects\\App_Demo\\app\\src\\main\\res\\values\\themes.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "59",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "222"
+                    },
+                    "to": {
+                        "startLines": "130",
+                        "startColumns": "4",
+                        "startOffsets": "7788",
+                        "endLines": "132",
+                        "endColumns": "12",
+                        "endOffsets": "7949"
                     }
                 },
                 {
@@ -127,25 +129,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Sunny.Lee\\AndroidStudioProjects\\testRoom\\app\\src\\main\\res\\values\\themes.xml",
-                    "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "59",
-                        "endLines": "5",
-                        "endColumns": "12",
-                        "endOffsets": "222"
-                    },
-                    "to": {
-                        "startLines": "130",
-                        "startColumns": "4",
-                        "startOffsets": "7788",
-                        "endLines": "132",
-                        "endColumns": "12",
-                        "endOffsets": "7949"
-                    }
-                },
-                {
                     "source": "C:\\Users\\Sunny.Lee\\.gradle\\caches\\transforms-3\\8234bbfce71749f56d6982463c57f1cd\\transformed\\startup-runtime-1.0.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2",
@@ -160,6 +143,23 @@
                         "startOffsets": "5892",
                         "endColumns": "82",
                         "endOffsets": "5970"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Sunny.Lee\\AndroidStudioProjects\\App_Demo\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "1",
+                        "startColumns": "4",
+                        "startOffsets": "17",
+                        "endColumns": "45",
+                        "endOffsets": "58"
+                    },
+                    "to": {
+                        "startLines": "100",
+                        "startColumns": "4",
+                        "startOffsets": "5975",
+                        "endColumns": "45",
+                        "endOffsets": "6016"
                     }
                 }
             ]
