@@ -28,6 +28,7 @@ import com.example.App_Demo.Chose.BTCardView
 import com.example.App_Demo.Chose.PulseCardView
 import com.example.App_Demo.Room.entity.BPM
 import com.example.App_Demo.Room.entity.Bt
+import com.example.App_Demo.chose2.ChoseScreenTopBar
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnrememberedMutableState")
@@ -48,7 +49,7 @@ fun ChoseScreen(
     var openLineChart = remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = { ChoseScreenTopBar(openLineChart) },
+        topBar = { ChoseScreenTopBar() },
         modifier = Modifier.background(Color(240, 240,240)),
     ) {
         var h: Int = 330  //欄高
@@ -153,27 +154,6 @@ fun CardView(
                 text = " $title",
                 color = Color.White,
                 fontSize = 22.sp)
-        }
-    }
-}
-
-@Composable
-fun ChoseScreenTopBar(
-    openLineChart: MutableState<Boolean>,
-) {
-    TopAppBar(
-        backgroundColor = Color.White) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Text(
-                text = "Chose Screen",
-                fontSize = 20.sp)
-            Spacer(modifier = Modifier.weight(1f))
-            TextButton(onClick = { openLineChart.value = !openLineChart.value }) {
-                Text(text = "Line Chart")
-            }
         }
     }
 }
