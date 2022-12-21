@@ -4,14 +4,12 @@ import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PointMode
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.translate
@@ -24,12 +22,13 @@ import kotlin.math.roundToInt
 
 @Composable
 fun SysLineChart(
-    data: List<Pair<String, Double>> = emptyList(),
+    sysData: List<Pair<String, Double>> = emptyList(),
+    diaData: List<Pair<String, Double>> = emptyList(),
     modifier: Modifier = Modifier,
 ) {
     val padding = 36.dp
-    val upperValue = remember { (data.maxOfOrNull { it.second }?.plus(7))?.roundToInt() ?: 0 }
-    val lowerValue = remember { (data.minOfOrNull { it.second }?.toInt() ?: 0) }
+    val upperValue = remember { (sysData.maxOfOrNull { it.second }?.plus(7))?.roundToInt() ?: 0 }
+    val lowerValue = remember { (diaData.minOfOrNull { it.second }?.toInt() ?: 0) }
 
     val density = LocalDensity.current
     val textPaint = remember(density) {
@@ -47,7 +46,7 @@ fun SysLineChart(
                 val strokeWidth = 1.dp.toPx()
                 val chartWidth = size.width - 2 * paddingPx
                 val chartHeight = size.height - 2 * paddingPx
-                val xInterval = chartWidth / data.size
+                val xInterval = chartWidth / sysData.size
 
                 //val spacePerHour = (size.width) / data.size
                 val spacing = 15.dp.toPx()
@@ -69,7 +68,7 @@ fun SysLineChart(
                     )
 
                     //y 文字
-                    if(data.isNotEmpty()) {
+                    if(sysData.isNotEmpty()) {
                         val priceStep = (upperValue - lowerValue) / 5f
                         (0..4).forEach { i ->
                             drawContext.canvas.nativeCanvas.apply {
@@ -84,9 +83,9 @@ fun SysLineChart(
                     }
 
                     //x 文字
-                    val spacePerHour = (chartWidth - spacing) / data.size
-                    (data.indices).forEach { i ->
-                        val hour = data[i].first
+                    val spacePerHour = (chartWidth - spacing) / sysData.size
+                    (sysData.indices).forEach { i ->
+                        val hour = sysData[i].first
                         drawContext.canvas.nativeCanvas.apply {
                             drawText(
                                 hour.toString(),
@@ -105,10 +104,10 @@ fun SysLineChart(
                     }
                      */
 
-                    //曲線
-                    val strokePath = androidx.compose.ui.graphics.Path().apply {
-                        data.indices.forEach { i ->
-                            val info = data[i]
+                    //sys曲線
+                    val sysPath = androidx.compose.ui.graphics.Path().apply {
+                        sysData.indices.forEach { i ->
+                            val info = sysData[i]
                             val ratio = (info.second - lowerValue) / (upperValue - lowerValue)
 
                             val x1 = i * xInterval
@@ -119,8 +118,31 @@ fun SysLineChart(
                         }
                     }
                     drawPath(
-                        path = strokePath,
+                        path = sysPath,
                         color = Color.Blue,
+                        style = Stroke(
+                            width = 2.dp.toPx(),
+                            cap = StrokeCap.Round
+                        )
+                    )
+
+                    //dia曲線
+                    //曲線
+                    val diaPath = androidx.compose.ui.graphics.Path().apply {
+                        diaData.indices.forEach { i ->
+                            val info = diaData[i]
+                            val ratio = (info.second - lowerValue) / (upperValue - lowerValue)
+
+                            val x1 = i * xInterval
+                            val y1 = chartHeight - spacing - (ratio * chartHeight).toFloat()
+
+                            if (i == 0) { moveTo(x1, y1) }
+                            lineTo(x1, y1)
+                        }
+                    }
+                    drawPath(
+                        path = diaPath,
+                        color = Color.Red,
                         style = Stroke(
                             width = 2.dp.toPx(),
                             cap = StrokeCap.Round

@@ -4,14 +4,12 @@ import android.graphics.Paint
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PointMode
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.translate
@@ -24,12 +22,12 @@ import kotlin.math.roundToInt
 
 @Composable
 fun PulLineChart(
-    data: List<Pair<String, Double>> = emptyList(),
+    pulData: List<Pair<String, Double>> = emptyList(),
     modifier: Modifier = Modifier,
 ) {
     val padding = 36.dp
-    val upperValue = remember { (data.maxOfOrNull { it.second }?.plus(7))?.roundToInt() ?: 0 }
-    val lowerValue = remember { (data.minOfOrNull { it.second }?.toInt() ?: 0) }
+    val upperValue = remember { (pulData.maxOfOrNull { it.second }?.plus(7))?.roundToInt() ?: 0 }
+    val lowerValue = remember { (pulData.minOfOrNull { it.second }?.toInt() ?: 0) }
 
     val density = LocalDensity.current
     val textPaint = remember(density) {
@@ -47,7 +45,7 @@ fun PulLineChart(
                 val strokeWidth = 1.dp.toPx()
                 val chartWidth = size.width - 2 * paddingPx
                 val chartHeight = size.height - 2 * paddingPx
-                val xInterval = chartWidth / data.size
+                val xInterval = chartWidth / pulData.size
 
                 //val spacePerHour = (size.width) / data.size
                 val spacing = 15.dp.toPx()
@@ -69,7 +67,7 @@ fun PulLineChart(
                     )
 
                     //y 文字
-                    if(data.isNotEmpty()) {
+                    if(pulData.isNotEmpty()) {
                         val priceStep = (upperValue - lowerValue) / 5f
                         (0..4).forEach { i ->
                             drawContext.canvas.nativeCanvas.apply {
@@ -84,9 +82,9 @@ fun PulLineChart(
                     }
 
                     //x 文字
-                    val spacePerHour = (chartWidth - spacing) / data.size
-                    (data.indices).forEach { i ->
-                        val hour = data[i].first
+                    val spacePerHour = (chartWidth - spacing) / pulData.size
+                    (pulData.indices).forEach { i ->
+                        val hour = pulData[i].first
                         drawContext.canvas.nativeCanvas.apply {
                             drawText(
                                 hour.toString(),
@@ -107,8 +105,8 @@ fun PulLineChart(
 
                     //曲線
                     val strokePath = androidx.compose.ui.graphics.Path().apply {
-                        data.indices.forEach { i ->
-                            val info = data[i]
+                        pulData.indices.forEach { i ->
+                            val info = pulData[i]
                             val ratio = (info.second - lowerValue) / (upperValue - lowerValue)
 
                             val x1 = i * xInterval

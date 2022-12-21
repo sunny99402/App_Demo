@@ -91,7 +91,7 @@ fun ChoseScreenBottomBar(
             //horizontalArrangement = Arrangement.Center
         ) {
             Text(
-                text = "Sys Line Chart",
+                text = "Sys & Dia Line Chart",
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
                     .weight(1f)

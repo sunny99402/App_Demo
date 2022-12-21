@@ -1,25 +1,17 @@
 package com.example.App_Demo.chose2
 
-import android.graphics.Paint
-import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.App_Demo.Room.entity.BPM
 import com.example.App_Demo.Room.entity.Bt
 import com.example.App_Demo.chose2.LineChart.PulLineChart
 import com.example.App_Demo.chose2.LineChart.SysLineChart
-import kotlin.math.round
-import kotlin.math.roundToInt
 
 @Composable
 fun OpenLineChart(
@@ -51,17 +43,19 @@ fun OpenLineChart(
                 }
 
                 if(chartTitle.value == "Sys") {
-                    var bpmPoint = mutableListOf<Pair<String, Double>>()
+                    val sysPoint = mutableListOf<Pair<String, Double>>()
+                    val diaPoint = mutableListOf<Pair<String, Double>>()
                     for(i in list_bpm) {
-                        bpmPoint.add(Pair("${i.id}", i.sys.toDouble()))
+                        sysPoint.add(Pair("${i.id}", i.sys.toDouble()))
+                        diaPoint.add(Pair("${i.id}", i.dia.toDouble()))
                     }
-                    SysLineChart(bpmPoint)
+                    SysLineChart(sysData = sysPoint, diaData = diaPoint)
                 } else {
-                    var bpmPoint = mutableListOf<Pair<String, Double>>()
+                    val bpmPoint = mutableListOf<Pair<String, Double>>()
                     for(i in list_bpm) {
                         bpmPoint.add(Pair("${i.id}", i.pul.toDouble()))
                     }
-                    PulLineChart(bpmPoint)
+                    PulLineChart(pulData = bpmPoint)
                 }
             }
         }
